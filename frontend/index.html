@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mini Learning Portal</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen">
+
+  <!-- Top bar -->
+  <header class="bg-white shadow-sm border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <h1 class="text-xl font-semibold text-slate-800">📚 Mini Learning Portal</h1>
+      <div id="userBar" class="hidden items-center gap-3">
+        <span id="usernameLabel" class="text-sm text-slate-600"></span>
+        <button id="logoutBtn" class="text-sm px-3 py-1.5 rounded-md bg-slate-800 text-white hover:bg-slate-700">
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Toast / feedback -->
+  <div id="toast" class="hidden fixed top-4 right-4 z-50 px-4 py-3 rounded-md shadow-lg text-sm text-white"></div>
+
+  <main class="max-w-5xl mx-auto px-4 py-8">
+
+    <!-- ============ LOGIN VIEW ============ -->
+    <section id="loginView" class="max-w-sm mx-auto bg-white rounded-lg shadow p-6 mt-16">
+      <h2 class="text-lg font-semibold text-slate-800 mb-4">Sign in</h2>
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-sm text-slate-600 mb-1">Username</label>
+          <input id="username" type="text" class="w-full border border-slate-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required />
+        </div>
+        <div>
+          <label class="block text-sm text-slate-600 mb-1">Password</label>
+          <input id="password" type="password" class="w-full border border-slate-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required />
+        </div>
+        <p id="loginError" class="hidden text-sm text-red-600"></p>
+        <button type="submit" class="w-full bg-indigo-600 text-white text-sm font-medium py-2 rounded-md hover:bg-indigo-700">
+          Sign in
+        </button>
+        <p class="text-xs text-slate-400 text-center">Test credentials: testuser / Password123!</p>
+      </form>
+    </section>
+
+    <!-- ============ DASHBOARD VIEW ============ -->
+    <section id="dashboardView" class="hidden space-y-8">
+      <div>
+        <h2 class="text-lg font-semibold text-slate-800 mb-3">My Courses</h2>
+        <div id="myCourses" class="grid sm:grid-cols-2 gap-4"></div>
+      </div>
+      <div>
+        <h2 class="text-lg font-semibold text-slate-800 mb-3">Available Courses</h2>
+        <div id="availableCourses" class="grid sm:grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- ============ COURSE DETAIL VIEW ============ -->
+    <section id="courseDetailView" class="hidden">
+      <button id="backBtn" class="text-sm text-indigo-600 hover:underline mb-4">&larr; Back to dashboard</button>
+
+      <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <h2 id="courseTitle" class="text-xl font-semibold text-slate-800 mb-1"></h2>
+        <p id="courseDescription" class="text-sm text-slate-500 mb-4"></p>
+
+        <div class="flex items-center justify-between text-sm mb-1">
+          <span id="courseStatus" class="font-medium"></span>
+          <span id="courseProgressLabel" class="text-slate-500"></span>
+        </div>
+        <div class="w-full bg-slate-200 rounded-full h-2.5">
+          <div id="progressBar" class="bg-indigo-600 h-2.5 rounded-full transition-all" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div id="lessonsList" class="space-y-3"></div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
